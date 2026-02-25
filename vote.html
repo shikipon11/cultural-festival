@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>投票ページ</title>
+</head>
+<body>
+
+<h2>投票システム</h2>
+
+<button onclick="投票する('A')">Aに投票</button>
+<button onclick="投票する('B')">Bに投票</button>
+
+<p id="メッセージ"></p>
+
+<script>
+
+const GAS_URL = "https://script.google.com/macros/s/AKfycbwwk41zy6Er4VTnL2OFH--Uh724O4wM3wFNRps7H4yDtHaafICSjd_4A2L6axJdUBYD/exec";
+
+function ユーザーIDを取得する(){
+  let id = localStorage.getItem("投票ユーザーID");
+  if(!id){
+    id = crypto.randomUUID();
+    localStorage.setItem("投票ユーザーID", id);
+  }
+  return id;
+}
+
+function メッセージを表示する(text){
+  document.getElementById("メッセージ").innerText = text;
+}
+
+async function 投票する(内容){
+  メッセージを表示する("送信中...");
+  const res = await fetch(GAS_URL,{
+    method:"POST",
+    body:JSON.stringify({
+      ユーザーID:ユーザーIDを取得する(),
+      投票内容:内容
+    })
+  });
+  const data = await res.json();
+  メッセージを表示する(data.結果);
+}
+
+</script>
+
+</body>
+</html>
