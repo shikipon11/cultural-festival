@@ -5,7 +5,11 @@ body {
   padding-top: 60px;
   margin: 0;
 }
-
+.フォーム {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
 h2 {
   color: #333;
   margin-bottom: 30px;
