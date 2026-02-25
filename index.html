@@ -46,8 +46,59 @@ button:hover {
 
 <h2>投票システム</h2>
 
-<button onclick="投票する('A')">Aに投票</button>
-<button onclick="投票する('B')">Bに投票</button>
+  <h3>質問1</h3>
+<select id="q1">
+  <option value="">選択してください</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+
+<h3>質問2</h3>
+<select id="q2">
+  <option value="">選択してください</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+
+<h3>質問3</h3>
+<select id="q3">
+  <option value="">選択してください</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+
+<h3>質問4</h3>
+<select id="q4">
+  <option value="">選択してください</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+  
+<button onclick="投票する()">投票する</button>
 
 <p id="メッセージ"></p>
 
@@ -67,20 +118,32 @@ function メッセージを表示する(text){
   document.getElementById("メッセージ").innerText = text;
 }
 
-async function 投票する(内容){
+async function 投票する(){
+
+  const q1 = document.getElementById("q1").value;
+  const q2 = document.getElementById("q2").value;
+  const q3 = document.getElementById("q3").value;
+  const q4 = document.getElementById("q4").value;
+
+  if(!q1 || !q2 || !q3 || !q4){
+    メッセージを表示する("すべて選択してください");
+    return;
+  }
 
   メッセージを表示する("送信中...");
 
   const url = GAS_URL +
     "?ユーザーID=" + ユーザーIDを取得する() +
-    "&投票内容=" + 内容;
+    "&q1=" + q1 +
+    "&q2=" + q2 +
+    "&q3=" + q3 +
+    "&q4=" + q4;
 
   const res = await fetch(url);
   const data = await res.json();
 
   メッセージを表示する(data.結果);
 }
-
 </script>
 
 </body>
