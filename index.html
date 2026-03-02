@@ -77,13 +77,13 @@
 <script>
 /**
  * 【設定】GASのWebアプリURL
- * ※GAS側で「デプロイ」した際に発行されるURLをここに貼り付けます。
+ * GAS側でデプロイした際に発行されるURLをここに貼り付ける
  */
 const GAS_URL = "https://script.google.com/macros/s/AKfycby-65wVoCb_afuHwFs8fS_wwBKviawmxQ3J53u8zBm0rkbWyfHTt2toDCz0pS8o1bRfFg/exec";
 
 /**
  * ユーザー固有のIDを取得または生成する関数
- * ブラウザのlocalStorageに保存することで、同じ端末からの二重投票を簡易的に防ぎます。
+ * ブラウザのlocalStorageに保存することで同じ端末(ブラウザ)からの二重投票を簡易的に防ぐ
  */
 function ユーザーIDを取得する(){
     let id = localStorage.getItem("投票ユーザーID");
